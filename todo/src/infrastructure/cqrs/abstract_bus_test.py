@@ -14,7 +14,7 @@ class SpyCommandHandler:
 
 class AbstractBusTest(BaseTestCase):
 
-    def test_container_instance_is_not_found(self):
+    def test_abstract_bus_handler_is_not_found(self):
 
         abstract_bus = AbstractBus()
 
