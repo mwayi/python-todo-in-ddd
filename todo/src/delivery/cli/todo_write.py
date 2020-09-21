@@ -1,3 +1,4 @@
+from todo.src.application.command.add_todo_handler import AddTodo
 from todo.src.infrastructure.logging.logger import Logger
 
 
@@ -11,4 +12,6 @@ class TodoWrite:
         self.command_bus = command_bus
 
     def execute(self):
-        pass
+        if self.parameters.usecase == 'add':
+            command = AddTodo(self.parameters.d)
+            self.command_bus.handle(command)

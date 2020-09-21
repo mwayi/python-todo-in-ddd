@@ -1,12 +1,17 @@
+import uuid
+import datetime
+from todo.src.domain.model.status import Status
+from todo.src.domain.model.todo import Todo
+from todo.src.domain.model.add_todo import AddTodo, AddTodoBuilder
+
+
 class AddTodo:
 
     def __init__(
         self,
-        filter,
-        export
+        description
     ):
-        self.filter = filter
-        self.export = export
+        self.description = description
 
 
 class AddTodoHandler:
@@ -17,6 +22,13 @@ class AddTodoHandler:
         self.todo_repository = todo_repository
 
     def handle(self, command):
-        todos = self.todo_repository.fetch_todos()
+        print(111, command.description)
 
-        return todos
+        parameters = {}
+        parameters[Todo.ID] = uuid.uuid4()
+        parameters[Todo.DESCRIPTION] = command.description
+        parameters[Todo.CREATED] = datetime.datetime.now()
+
+        add_todo_builder = AddTodoBuilder(parameters)
+        add_todo = add_todo_builder.to_add_todo()
+        self.todo_repository.add_todo(add_todo)

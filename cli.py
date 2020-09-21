@@ -36,7 +36,7 @@ class Cli:
                 query_bus = MakeQueryBus(container, AbstractBus).make_bus()
                 usecase = TodoRead(container, query_bus, os.environ, parameters)
                 usecase.execute()
-            return
+                return
 
             if parameters.usecase in (Usecase.TODO_ADD, Usecase.TODO_REMOVE, Usecase.TODO_COMPLETE):
                 command_bus = MakeCommandBus(container, AbstractBus).make_bus()
