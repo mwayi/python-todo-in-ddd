@@ -1,0 +1,2 @@
+class RequiredParameterNotFound(Exception):
+    pass

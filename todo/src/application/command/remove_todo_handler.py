@@ -1,4 +1,5 @@
 class RemoveTodo:
+
     def __init__(
         self,
         filter,
@@ -9,6 +10,7 @@ class RemoveTodo:
 
 
 class RemoveTodoHandler:
+
     def __init__(self, log, todo_repository):
         self.log_root = log
         self.log = log.getLogger(__name__)

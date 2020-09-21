@@ -7,6 +7,7 @@ from todo. \
 
 
 class MakeCommandBus:
+
     def __init__(self, container, bus):
         self.container = container
         self.bus = bus

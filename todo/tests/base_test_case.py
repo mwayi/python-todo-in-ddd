@@ -17,9 +17,6 @@ class SqliteDatabase(object):
 
 class BaseTestCase(TestCase):
 
-    def tabulate(self, data):
-        print('\n' + tabulate(data, headers = 'keys'))
-
     def create_inmemory_connection(self):
         with SqliteDatabase(':memory:') as connection:
             return connection
