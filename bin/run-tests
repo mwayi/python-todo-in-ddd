@@ -10,3 +10,6 @@ echo $'\e'"[36mRunning tests under the pattern '"$pattern"'" $'\e[0m';
 
 coverage run  --source todo --omit *__init__.py -m unittest2 discover -p="$pattern"
 coverage html
+
+# coverage run -m unittest2 todo/src/infrastructure/cqrs/abstract_bus_test.py
+

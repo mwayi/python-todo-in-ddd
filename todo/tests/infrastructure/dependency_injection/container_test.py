@@ -1,6 +1,7 @@
 from todo. \
     src.infrastructure.dependency_injection.container import Container, FactoryNotFound
-from todo.shared.base_test_case import BaseTestCase
+from todo.tests.base_test_case import BaseTestCase
+
 
 class FakeClassA:
     def __init__(self):
@@ -12,13 +13,16 @@ class FakeClassA:
     def change_name(self, name):
         self._name = name
 
+
 class StubClassB:
     def __init__(self, dummy_class_a):
         pass
 
+
 class StubClassC:
     def __init__(self, dummy_class_a, dummy_class_b):
         pass
+
 
 class ContainerTest(BaseTestCase):
 
@@ -33,29 +37,29 @@ class ContainerTest(BaseTestCase):
 
         container = Container()
         container.register_provider(
-            FakeClassA, 
+            FakeClassA,
             lambda container: FakeClassA()
         )
 
         instance = container.provide(FakeClassA)
-        
+
         self.assertEqual(FakeClassA, instance.__class__)
 
     def test_container_provides_instance_of_classes_with_dependencies(self):
 
         container = Container()
         container.register_provider(
-            FakeClassA, 
+            FakeClassA,
             lambda container: FakeClassA()
         )
         container.register_provider(
-            StubClassB, 
+            StubClassB,
             lambda container: StubClassB(container.provide(FakeClassA))
         )
         container.register_provider(
-            StubClassC, 
+            StubClassC,
             lambda container: StubClassC(
-                container.provide(FakeClassA), 
+                container.provide(FakeClassA),
                 container.provide(StubClassB)
             )
         )
@@ -66,12 +70,11 @@ class ContainerTest(BaseTestCase):
         instance = container.provide(StubClassC)
         self.assertEqual(StubClassC, instance.__class__)
 
-    
     def test_container_can_provide_singleton(self):
 
         container = Container()
         container.register_provider(
-            FakeClassA, 
+            FakeClassA,
             lambda container: FakeClassA()
         )
 
