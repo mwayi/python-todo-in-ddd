@@ -31,6 +31,7 @@ class AbstractBusTest(BaseTestCase):
             StubCommand: spy_command_handler
         })
 
-        abstract_bus.handle(StubCommand)
+        stub_command = StubCommand()
+        abstract_bus.handle(stub_command)
 
-        self.assertEqual(StubCommand, spy_command_handler.command_handled)
+        self.assertEqual(stub_command, spy_command_handler.command_handled)

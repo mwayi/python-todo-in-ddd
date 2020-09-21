@@ -15,5 +15,5 @@ class TodoRead:
     def execute(self):
         if self.parameters.usecase == 'view':
             command = ViewTodo(self.parameters.filter, self.parameters.export)
-            todos = self.query_bus.handle(command.__class__)
+            todos = self.query_bus.handle(command)
             self.log.info(tabulate(todos, headers = 'keys'))
