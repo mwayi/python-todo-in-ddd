@@ -23,8 +23,6 @@ class Cli:
 
         load_dotenv()
 
-        Definition(os.environ, parameters).apply_to(container)
-
         try:
             Definition(os.environ, parameters).apply_to(container)
         except Exception:
