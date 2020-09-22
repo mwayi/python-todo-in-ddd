@@ -8,7 +8,7 @@ class Container:
         self._providers = {}
         self._singletons = {}
 
-    def register_provider(self, name, factory):
+    def define(self, name, factory):
         self._providers[name] = factory
 
     def provide(self, name):

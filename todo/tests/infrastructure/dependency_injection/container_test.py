@@ -36,7 +36,7 @@ class ContainerTest(BaseTestCase):
     def test_container_provides_instance_of_class(self):
 
         container = Container()
-        container.register_provider(
+        container.define(
             FakeClassA,
             lambda container: FakeClassA()
         )
@@ -48,15 +48,15 @@ class ContainerTest(BaseTestCase):
     def test_container_provides_instance_of_classes_with_dependencies(self):
 
         container = Container()
-        container.register_provider(
+        container.define(
             FakeClassA,
             lambda container: FakeClassA()
         )
-        container.register_provider(
+        container.define(
             StubClassB,
             lambda container: StubClassB(container.provide(FakeClassA))
         )
-        container.register_provider(
+        container.define(
             StubClassC,
             lambda container: StubClassC(
                 container.provide(FakeClassA),
@@ -73,7 +73,7 @@ class ContainerTest(BaseTestCase):
     def test_container_can_provide_singleton(self):
 
         container = Container()
-        container.register_provider(
+        container.define(
             FakeClassA,
             lambda container: FakeClassA()
         )
