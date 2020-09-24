@@ -1,0 +1,32 @@
+version: '3.8'
+
+networks:
+  testing:
+    driver: bridge
+
+services:
+  db:
+    image: mariadb:10.2.25
+    restart: always
+    container_name: todo_database
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    environment:
+      MYSQL_USER: todo
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: todo
+      MYSQL_PASSWORD: root
+    networks:
+      - testing
+    volumes:
+      - ./docker/mysql/:/docker-entrypoint-initdb.d/:rw
+  tests:
+    build:
+      context: .
+      dockerfile: ./docker/todos/Dockerfile.test
+    depends_on:
+      - db
+    networks:
+      - testing

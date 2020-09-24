@@ -12,28 +12,21 @@ from todo.src.domain.model.todo import Todo
 class TodoRepositoryTest(BaseTestCase):
 
     def setUp(self):
-        self.database = self.create_database(
-            './todo/fixtures/database/create-database.sql'
-        )
+        self.database = self.create_database()
         self.logger = LoggerDummy()
 
     def tearDown(self):
         self.database.close()
 
     def test_that_we_can_retrieve_todos(self):
-        ## Abandon test
-        self.execute_query(
-            self.database,
-            './todo/fixtures/database/insert-todos.sql'
-        )
 
         subject = TodoRepository(self.logger, self.database)
         todos = subject.fetch_todos()
 
-        self.assertEqual('3ac66762-fb8e-11ea-adc1-0242ac120002', todos[0][3])
+        self.assertEqual('3ac66762-fb8e-11ea-adc1-0242ac120002', todos[0].get('uuid'))
 
     def test_that_we_can_add_todo(self):
-        ## Abandon test
+
         parameters = {}
         parameters[Todo.ID] = uuid.uuid4()
         parameters[Todo.DESCRIPTION] = 'foo'
@@ -46,5 +39,4 @@ class TodoRepositoryTest(BaseTestCase):
         subject.add_todo(add_todo)
         
         todos = subject.fetch_todos()
-        self.assertEqual(str(parameters[Todo.ID]), todos[0][3])
-        self.assertEqual(str(parameters[Todo.CREATED]), todos[0][1])
+        self.assertEqual(str(parameters[Todo.ID]), str(todos[1].get('uuid')))

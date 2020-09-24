@@ -1,0 +1,16 @@
+FROM python:3.6.5-slim
+
+ARG WORKING_DIR=/usr/src/app
+
+WORKDIR $WORKING_DIR
+
+COPY ./command/wait-for-it.sh /wait-for-it.sh
+RUN chmod +x /wait-for-it.sh
+
+COPY . .
+RUN pip install -r requirements.txt --disable-pip-version-check --no-cache-dir
+
+COPY ./docker/todos/docker-entrypoint.sh .
+RUN chmod +x docker-entrypoint.sh
+
+ENTRYPOINT ["./docker-entrypoint.sh"]
