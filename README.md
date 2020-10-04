@@ -38,16 +38,13 @@ pip3 install -r requirements.txt
 
 ## Use
 
-```
-add --t="Do x"
+Still in whip
 
-remove --ids=[1,2,3]
 
-view --status=(done, not-done, in-progress) --date=(today, yesterday, 00/00/00) --export=true
-
-view --filter="status = done and date between 00/00/00,00/00/00" --export=true
-
-complete --ids=[1,2,3]
+- [x] add --t="Do x"
+- [ ] remove --ids=[1,2,3]
+- [x] view --filter="status = done and date between 00/00/00,00/00/00"
+- [ ] complete --ids=[1,2,3]
 
 ```
 

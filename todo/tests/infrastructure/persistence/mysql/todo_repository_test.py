@@ -8,6 +8,7 @@ from todo. \
     tests.base_test_case import BaseTestCase
 from todo.src.domain.model.add_todo import AddTodoBuilder
 from todo.src.domain.model.todo import Todo
+from expression.src.expression import Expression
 
 class TodoRepositoryTest(BaseTestCase):
 
@@ -39,4 +40,13 @@ class TodoRepositoryTest(BaseTestCase):
         subject.add_todo(add_todo)
         
         todos = subject.fetch_todos()
-        self.assertEqual(str(parameters[Todo.ID]), str(todos[1].get('uuid')))
+        self.assertEqual(str(parameters[Todo.ID]), str(todos[4].get('uuid')))
+
+
+    def test_that_we_can_filter_todo_by_status_and_date(self):
+
+        subject = TodoRepository(self.logger, self.database)
+        conditions = Expression('(status = done and date between 2020-09-21,2020-09-23)').to_conditions()
+        todos = subject.fetch_todos(conditions)
+
+        self.assertEqual(1, len(todos))

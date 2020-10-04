@@ -1,3 +1,6 @@
+from expression.src.expression import Expression
+
+
 class ViewTodo:
     def __init__(
         self,
@@ -15,6 +18,7 @@ class ViewTodoHandler:
         self.todo_repository = todo_repository
 
     def handle(self, command):
-        todos = self.todo_repository.fetch_todos()
 
-        return todos
+        expression = Expression(command.filter)
+        conditions = expression.to_conditions()
+        return self.todo_repository.fetch_todos(conditions)
