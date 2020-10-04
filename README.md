@@ -42,11 +42,9 @@ Still in whip
 
 
 - [x] add --t="Do x"
-- [ ] remove --ids=[1,2,3]
+- [ ] remove --id=[1,2,3]
 - [x] view --filter="status = done and date between 00/00/00,00/00/00"
-- [ ] complete --ids=[1,2,3]
-
-```
+- [x] complete --id=[1,2,3]
 
 ### Logging
 

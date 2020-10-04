@@ -26,7 +26,7 @@ class Request:
 
         self.parser.add_argument(
             '-id',
-            help = 'todo description',
+            help = 'numeric ids of todo items',
             required = False
         )
 
