@@ -38,9 +38,6 @@ pip3 install -r requirements.txt
 
 ## Use
 
-Still in whip
-
-
 - [x] add --t="Do x"
 - [ ] remove --id=[1,2,3]
 - [x] view --filter="status = done and date between 00/00/00,00/00/00"
