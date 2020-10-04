@@ -1,12 +1,7 @@
 class CompleteTodo:
 
-    def __init__(
-        self,
-        filter,
-        export
-    ):
-        self.filter = filter
-        self.export = export
+    def __init__(self, id):
+        self.id = id
 
 
 class CompleteTodoHandler:
@@ -17,6 +12,10 @@ class CompleteTodoHandler:
         self.todo_repository = todo_repository
 
     def handle(self, command):
-        todos = self.todo_repository.fetch_todos()
+        ids = list(map(int, command.id.split(',')))
 
-        return todos
+        if len(ids) < 1:
+            self.log.error('No ids supplied')
+        else :
+            self.todo_repository.complete_todos(ids)
+            self.log.info('Success, those items have been marked as complete')

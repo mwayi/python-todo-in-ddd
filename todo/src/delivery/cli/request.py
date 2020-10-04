@@ -19,24 +19,31 @@ class Request:
         )
 
         self.parser.add_argument(
-            '--d',
+            '-d',
+            help = 'todo description',
             required = False
         )
 
         self.parser.add_argument(
-            '--log-level',
+            '-id',
+            help = 'todo description',
+            required = False
+        )
+
+        self.parser.add_argument(
+            '-log-level',
             help = 'Log level (debug = 0, info = 1(default), warning = 2, error = 3, critical = 4)',
             default = 1,
             type = int
         )
 
         self.parser.add_argument(
-            '--filter',
+            '-filter',
             required = False
         )
 
         self.parser.add_argument(
-            '--export',
+            '-export',
             required = False
         )
 

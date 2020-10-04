@@ -51,6 +51,22 @@ class TodoRepository:
         self.log.debug(cursor._last_executed)
         self.connection.commit()
 
+    def complete_todos(self, ids):
+  
+        statement = """
+            update {} t
+            set     t.`status` = 'done'
+            where   t.id in ({})
+        """.format(
+            Table.TODOS,
+            ', '.join(["%s"] * len(ids))
+        )
+
+        cursor = self.connection.cursor()
+        cursor.execute(statement, ids)
+        self.log.debug(cursor._last_executed)
+        self.connection.commit()
+
     def _transform_conditions_to_where(self, conditions):
         if conditions is None:
             return Where()

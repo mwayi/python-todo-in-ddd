@@ -50,3 +50,12 @@ class TodoRepositoryTest(BaseTestCase):
         todos = subject.fetch_todos(conditions)
 
         self.assertEqual(1, len(todos))
+
+    
+    def test_that_we_can_mark_items_as_complete(self):
+
+        subject = TodoRepository(self.logger, self.database)
+        todos = subject.complete_todos([3])
+
+        todos = subject.fetch_todos()
+        self.assertEqual('done', str(todos[2].get('status')))

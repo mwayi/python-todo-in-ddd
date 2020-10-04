@@ -22,8 +22,6 @@ class AddTodoHandler:
         self.todo_repository = todo_repository
 
     def handle(self, command):
-        print(111, command.description)
-
         parameters = {}
         parameters[Todo.ID] = uuid.uuid4()
         parameters[Todo.DESCRIPTION] = command.description
